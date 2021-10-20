@@ -4,9 +4,13 @@
     {{!-- This line shows the driver title which you don't have to change it --}}
     <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
 
-    <div class="over-hr r-mt20 r-mb20">
-      <span>Nutanix options 2</span>
-    </div>
+    {{#accordion-list showExpandAll=false as | al expandFn | }}
+      {{#accordion-list-item 
+        title="1. Account Access"
+        detail="Configure to connect to the Nutanix Prism Element Instance"
+        expandOnInit=true
+        expand=(action expandFn)
+      }}
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
@@ -75,6 +79,8 @@
         </label>
       </div>
     </div>
+
+    {{/accordion-list-item}}
 
     <div class="row">
       <div class="col-md-2 form-label">
