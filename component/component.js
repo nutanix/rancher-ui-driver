@@ -55,7 +55,8 @@ export default Ember.Component.extend(NodeDriver, {
       cluster: "",
       insecure: true,
       storageContainer: "",
-      diskSize: 0
+      diskSize: 0,
+      cloudInit: ""
     });
 
     set(this, 'model.%%DRIVERNAME%%Config', config);
