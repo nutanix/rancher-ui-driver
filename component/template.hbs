@@ -136,6 +136,24 @@
     </div>
 
     <div class="row">
+      <div class="col-sm-12 col-md-2 form-label">
+        <label class="form-control-static">Template Disk Size (GiB)</label>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        {{input type="text"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.vmImageSize
+        }}
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <p class="form-control-static help-block">
+          Size to extand the template disk in GiB.
+          Let unset if you don't want to change the templte size.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-2 form-label">
         <label class="form-control-static">VM Network(s)</label>
       </div>
