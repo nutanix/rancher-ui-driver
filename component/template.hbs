@@ -182,36 +182,12 @@
     <div class="row">
       <div class="col-md-2 form-label">
         <label class="form-control-static">Cloud Config YAML</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.cloudInit
-          }}
-        <textarea id="story" name="story"
-          rows="5">
-#cloud-config
-        </textarea>
+        {{ textarea classNames="form-control" placeholder='#cloud-config' value=model.%%DRIVERNAME%%Config.cloudInit }}
       </div>
       <div class="col-sm-12 col-md-4">
         <p class="form-control-static help-block">The content of the Cloud-init file</p>
       </div>
     </div>
-
-      <div class="row">
-          <div class="col span-12">
-            <label class="acc-label">StackScript (<a href="https://cloud.linode.com/stackscripts" target="_blank" rel="nofollow noreferrer noopener">manage your StackScripts</a>)</label>
-            {{ input
-            classNames="form-control"
-            placeholder="Examples: 'username/Stackscript Label' or '12345'"
-            value=model.%%DRIVERNAME%%Config.stackscript
-            }}
-          </div>
-          <div class="col span-12">
-            <label class="acc-label">StackScript Variables</label>
-            {{ textarea classNames="form-control" placeholder='{ "example": "value", "json": true }' value=model.%%DRIVERNAME%%Config.stackscriptData }}
-          </div>
-        </div>
 
     <div class="row">
       <div class="col-md-2 form-label">
