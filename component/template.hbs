@@ -4,6 +4,15 @@
     {{!-- This line shows the driver title which you don't have to change it --}}
     <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
 
+
+   {{#accordion-list showExpandAll=false as | al expandFn | }}
+      {{#accordion-list-item 
+        title="1. Account Access"
+        detail="Configure to connect to the Nutanix Prism Element Instance"
+        expandOnInit=true
+        expand=(action expandFn)
+      }}
+
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
         <label class="form-control-static">Management Endpoint</label>
@@ -49,6 +58,8 @@
       </div>
     </div>
 
+        {{/accordion-list-item}}
+      {{/accordion-list}}
     <div class="row">
       <div class="col-md-2 form-label">
         <label class="form-control-static">Cluster</label>
@@ -173,7 +184,7 @@
         <label class="form-control-static">Cloud Config YAML</label>
       </div>
       <div class="col-md-4">
-        {{input type="file"
+        {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.cloudInit
           }}
