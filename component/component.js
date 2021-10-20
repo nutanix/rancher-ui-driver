@@ -50,7 +50,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmCores: 1,
       vmMem: 4096,
       vmImage: "",
-      vmImageSize: 0
+      vmImageSize: 0,
       vmNetwork: "default",
       vmGroup: "",
       cluster: "",
