@@ -180,12 +180,9 @@
     </div>
 
     <div class="row">
-      <div class="col-md-2 form-label">
+      <div class="col-md-2 form-label CodeMirror cm-s-monokai CodeMirror-wrap">
         <label class="form-control-static">Cloud Config YAML</label>
         {{ textarea classNames="form-control" placeholder='#cloud-config' value=model.%%DRIVERNAME%%Config.cloudInit }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The content of the Cloud-init file</p>
       </div>
     </div>
 
@@ -200,10 +197,9 @@
         }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the group to attach to the newly created VM. Separate multiple groups by ",".</p>
+        <p class="form-control-static help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
       </div>
     </div>
-
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
