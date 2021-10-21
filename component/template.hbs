@@ -184,7 +184,7 @@
         <label class="form-control-static">Cloud Config YAML</label>
       </div>
       <div class="CodeMirror cm-s-monokai CodeMirror-wrap">
-        {{ textarea classNames="form-control" placeholder='#cloud-config' value=model.%%DRIVERNAME%%Config.cloudInit }}
+        {{ textarea classNames="form-control" placeholder='#cloud-config' autocorrect="off" autocapitalize="off" spellcheck="false" value=model.%%DRIVERNAME%%Config.cloudInit }}
       </div>
     </div>
 
