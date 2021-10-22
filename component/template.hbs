@@ -138,38 +138,31 @@
         </div>
         <p class="help-block">The name of the VM disks to clone from, for the newly created VM</p>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="acc-label">VM Image</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.vmImage
+      <div class="col span-6">
+        <label class="acc-label">Template Disk Size</label>
+        <div class="input-group">
+          {{input-integer
+            min=0
+            value=model.%%DRIVERNAME%%Config.vmImageSize
+            classNames="form-control"
           }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="help-block">The name of the VM disks to clone from, for the newly created VM</p>
+          <div class="input-group-addon bg-default">GiB</div>
+        </div>
+        <p class="help-block">Size to extand the template disk. Set this to zero if you don't want to extend the template disk.</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="acc-label">Template Disk Size (GiB)</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.vmImageSize
-        }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="help-block">
-          Size to extand the template disk in GiB.
-          Set this to zero if you don't want to extend the template disk.
-        </p>
+      <label class="acc-label">Cloud Config YAML</label>
+      <div class="input-group">
+        {{input-yaml
+        showDownload=false
+        showUpload=false
+        canChangeName=false
+        gutters=(array)
+        minHeight=500
+        value=model.%%DRIVERNAME%%Config.cloudInit
+      }}
       </div>
     </div>
 
@@ -187,18 +180,6 @@
         <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
       </div>
     </div>
-
-      <label class="acc-label">
-        Cloud Config YAML
-      </label>
-      {{input-yaml
-        showDownload=false
-        showUpload=false
-        canChangeName=false
-        gutters=(array)
-        minHeight=500
-        value=model.%%DRIVERNAME%%Config.cloudInit
-      }}
 
     <div class="row">
       <div class="col-md-2 form-label">
