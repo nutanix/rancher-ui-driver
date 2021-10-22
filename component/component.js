@@ -1,5 +1,13 @@
 /*!!!!!!!!!!!Do not change anything between here (the DRIVERNAME placeholder will be automatically replaced at buildtime)!!!!!!!!!!!*/
+import { alias } from '@ember/object/computed';
+import {
+get, set, setProperties, computed, observer
+} from '@ember/object';
+import Component from '@ember/component';
 import NodeDriver from 'shared/mixins/node-driver';
+import layout from './template';
+import { inject as service } from '@ember/service';
+import C from 'shared/utils/constants';
 
 // do not remove LAYOUT, it is replaced at build time with a base64 representation of the template of the hbs template
 // we do this to avoid converting template to a js file that returns a string and the cors issues that would come along with that
