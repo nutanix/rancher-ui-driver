@@ -59,7 +59,7 @@ export default Ember.Component.extend(NodeDriver, {
     set(this,'layout', template);
 
     this._super(...arguments);
-    this.initKeyValueParams('config.cfgparam', 'initParamArray');
+    this.initKeyValueParams('config.vmCategories', 'initParamArray');
 
   },
   /*!!!!!!!!!!!DO NOT CHANGE END!!!!!!!!!!!*/
