@@ -99,8 +99,24 @@
         expand=(action expandFn)
     }}
 
-    
-
+    <div class="row">
+      <div class="col span-6">
+         <label class="acc-label">
+           CPUs
+         </label>
+         <div class="input-group">
+           {{input-integer
+            min=1
+            max=32
+            value=model.%%DRIVERNAME%%Config.vmCpus
+            classNames="form-control"
+          }}
+          <div class="input-group-addon bg-default">
+            {{t "nodeDriver.vmwarevsphere.cpuCount.unit" cores=vmCpus}}
+          </div>
+         </div>
+      </div>
+    </div>
 
 
     <div class="row">
@@ -200,7 +216,7 @@
     </div>
 
       <label class="acc-label">
-        {{t "nodeDriver.nutanix.cloudconfig.label"}}
+        Cloud Config YAML
       </label>
       {{input-yaml
         showDownload=false
@@ -263,7 +279,7 @@
     </div>
     {{/accordion-list-item}}
   {{/accordion-list}}
-  
+
     {{!-- This following contains the Name, Labels and Engine Options fields --}}
     <div class="over-hr"><span>{{templateOptionsTitle}}</span></div>
 
