@@ -116,6 +116,7 @@ export default Ember.Component.extend(NodeDriver, {
 
   actions: {
     paramChanged(array) {
+      console.log(array)
       this.updateKeyValueParams('config.vmCategories', array);
     }
   },
