@@ -125,7 +125,7 @@ export default Ember.Component.extend(NodeDriver, {
     console.log(pairsKey)
     console.log(paramsKey)
     console.log(get(this, pairsKey))
-    set(this, paramsKey, (get(this, pairsKey) || []).reduce(stringsToParams, []));
+    // set(this, paramsKey, (get(this, pairsKey) || []).reduce(stringsToParams, []));
   },
 
   updateKeyValueParams(pairsKey, params) {
