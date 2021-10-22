@@ -18,6 +18,19 @@ const service      = Ember.inject.service;
 const defaultRadix = 10;
 const defaultBase  = 1024;
 
+const stringsToParams = (params, str) => {
+  const index = str.indexOf('=');
+
+  if ( index > -1 ) {
+    params.push({
+      key:   str.slice(0, index),
+      value: str.slice(index + 1),
+    });
+  }
+
+  return params;
+};
+
 const paramsToStrings = (strs, param) => {
   if (param.value && param.key) {
     strs.push(`${ param.key }:${ param.value }`);
@@ -44,6 +57,7 @@ export default Ember.Component.extend(NodeDriver, {
     set(this,'layout', template);
 
     this._super(...arguments);
+    this.initKeyValueParams('config.cfgparam', 'initParamArray');
 
   },
   /*!!!!!!!!!!!DO NOT CHANGE END!!!!!!!!!!!*/
@@ -60,7 +74,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmImage: "",
       vmImageSize: 0,
       vmNetwork: "default",
-      vmCategories: ['Zone=lab'],
+      vmCategories: [],
       cluster: "",
       insecure: true,
       storageContainer: "",
@@ -102,6 +116,10 @@ export default Ember.Component.extend(NodeDriver, {
     paramChanged(array) {
       this.updateKeyValueParams('config.vmCategories', array);
     }
+  },
+
+  initKeyValueParams(pairsKey, paramsKey) {
+    set(this, paramsKey, (get(this, pairsKey) || []).reduce(stringsToParams, []));
   },
 
   updateKeyValueParams(pairsKey, params) {
