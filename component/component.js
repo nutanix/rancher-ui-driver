@@ -48,6 +48,8 @@ export default Ember.Component.extend(NodeDriver, {
   config:     alias('model.%%DRIVERNAME%%Config'),
   app:        service(),
 
+  initParamArray:       null,
+
   init() {
     // This does on the fly template compiling, if you mess with this :cry:
     const decodedLayout = window.atob(LAYOUT);
