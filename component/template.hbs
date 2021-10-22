@@ -129,17 +129,17 @@
 
     <div class="row">
       <div class="col span-6">
-        <label class="acc-label">VM image</label>
+        <label class="acc-label">Template Image</label>
         <div class="input-group">
           {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.vmImage
           }}
         </div>
-        <p class="help-block">The name of the VM disks to clone from, for the newly created VM</p>
+        <p class="help-block">The name of the Image to use as template for the newly created VM</p>
       </div>
-      <div class="col span-6">
-        <label class="acc-label">Template Disk Size</label>
+      <div class="col span-12">
+        <label class="acc-label">VM Disk Size</label>
         <div class="input-group">
           {{input-integer
             min=0
@@ -214,7 +214,7 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
-        <label class="acc-label">Disk Size (GiB)</label>
+        <label class="acc-label">Additional Disk Size (GiB)</label>
       </div>
       <div class="col-sm-12 col-md-4">
         {{input type="text"
