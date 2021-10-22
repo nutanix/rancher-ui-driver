@@ -17,6 +17,14 @@ const service      = Ember.inject.service;
 
 const defaultRadix = 10;
 const defaultBase  = 1024;
+
+const paramsToStrings = (strs, param) => {
+  if (param.value && param.key) {
+    strs.push(`${ param.key }=${ param.value }`);
+  }
+
+  return strs;
+};
 /*!!!!!!!!!!!GLOBAL CONST END!!!!!!!!!!!*/
 
 
