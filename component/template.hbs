@@ -163,12 +163,14 @@
     </div>
 
     <div class="row">
+      <div class="col span-6">
       <label class="acc-label">VM Network(s)</label>
       {{input type="text"
           class="form-control"
           value=model.%%DRIVERNAME%%Config.vmNetwork
       }}
       <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
+      </div>
     </div>
 
     <div class="row">
