@@ -193,6 +193,20 @@
       <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
     </div>
 
+    <div class="row">
+      <div class="col span-12">
+        {{form-key-value
+          allowEmptyValue=true
+          initialArray=initParamArray
+          changedArray=(action "paramChanged")
+          header=(t "nodeDriver.vmwarevsphere.cfgparam.label")
+          valuePlaceholder="nodeDriver.vmwarevsphere.cfgparam.value.placeholder"
+          keyPlaceholder="nodeDriver.vmwarevsphere.cfgparam.key.placeholder"
+          addActionLabel="nodeDriver.vmwarevsphere.cfgparam.addActionLabel"
+        }}
+      </div>
+    </div>
+
     {{/accordion-list-item}}
   {{/accordion-list}}
 
