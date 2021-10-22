@@ -1,7 +1,7 @@
 /*!!!!!!!!!!!Do not change anything between here (the DRIVERNAME placeholder will be automatically replaced at buildtime)!!!!!!!!!!!*/
 import { alias } from '@ember/object/computed';
 import {
-get, set, setProperties, computed, observer
+ setProperties,  observer
 } from '@ember/object';
 import Component from '@ember/component';
 import NodeDriver from 'shared/mixins/node-driver';
@@ -17,7 +17,7 @@ const LAYOUT;
 
 /*!!!!!!!!!!!GLOBAL CONST START!!!!!!!!!!!*/
 // EMBER API Access - if you need access to any of the Ember API's add them here in the same manner rather then import them via modules, since the dependencies exist in rancher we dont want to expor the modules in the amd def
-// const computed     = Ember.computed;
+const computed     = Ember.computed;
 const get          = Ember.get;
 const set          = Ember.set;
 const alias        = Ember.computed.alias;
