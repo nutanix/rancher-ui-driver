@@ -211,11 +211,16 @@
   {{/accordion-list}}
 
     {{!-- This following contains the Name, Labels and Engine Options fields --}}
-    <div class="over-hr"><span>{{templateOptionsTitle}}</span></div>
+    <div class="over-hr">
+      <span>
+        {{templateOptionsTitle}}
+      </span>
+    </div>
 
     {{form-name-description
       model=model
       nameRequired=true
+      rowClass="row mb-10"
     }}
 
     {{form-user-labels
