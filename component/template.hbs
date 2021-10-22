@@ -3,12 +3,13 @@
 
     {{!-- This line shows the driver title which you don't have to change it --}}
     <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
+    <div class="over-hr"><span>{{driverContentTitle}}</span></div>
 
 
    {{#accordion-list showExpandAll=false as | al expandFn | }}
       {{#accordion-list-item 
         title="1. Account Access"
-        detail="Configure to connect to the Nutanix Prism Element Instance"
+        detail="Configure to connect to the Nutanix Prism Central Instance"
         expandOnInit=true
         expand=(action expandFn)
       }}
@@ -58,9 +59,22 @@
       </div>
     </div>
 
-        {{/accordion-list-item}}
-      {{/accordion-list}}
-    <div class="row">
+    <div class="col-md-2">
+      <div class="checkbox">
+        <label class="acc-label">{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.insecure}}
+          Allow insecure communication to the endpoint
+        </label>
+      </div>
+    </div>
+
+    {{/accordion-list-item}}
+    {{#accordion-list-item 
+        title="2. Scheduling"
+        detail="Choose what cluster the virtual machine will be scheduled to"
+        expandOnInit=true
+        expand=(action expandFn)
+    }}
+      <div class="row">
       <div class="col-md-2 form-label">
         <label class="form-control-static">Cluster</label>
       </div>
@@ -75,13 +89,19 @@
       </div>
     </div>
 
-    <div class="col-md-2">
-      <div class="checkbox">
-        <label class="acc-label">{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.insecure}}
-          Allow insecure communication to the endpoint
-        </label>
-      </div>
-    </div>
+
+
+    {{/accordion-list-item}}
+    {{#accordion-list-item 
+        title="3. Instance"
+        detail="Choose the size and OS of the virtual machine"
+        expandOnInit=true
+        expand=(action expandFn)
+    }}
+
+    
+
+
 
     <div class="row">
       <div class="col-md-2 form-label">
@@ -180,7 +200,7 @@
     </div>
 
       <label class="acc-label">
-        {{t "nodeDriver.vmwarevsphere.cloudconfig.label"}}
+        {{t "nodeDriver.nutanix.cloudconfig.label"}}
       </label>
       {{input-yaml
         showDownload=false
@@ -241,7 +261,9 @@
         </p>
       </div>
     </div>
-
+    {{/accordion-list-item}}
+  {{/accordion-list}}
+  
     {{!-- This following contains the Name, Labels and Engine Options fields --}}
     <div class="over-hr"><span>{{templateOptionsTitle}}</span></div>
 
