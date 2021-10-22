@@ -16,7 +16,7 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Management Endpoint</label>
+        <label class="acc-label">Management Endpoint</label>
       </div>
       <div class="col-sm-12 col-md-4">
         {{input type="text"
@@ -25,13 +25,13 @@
           }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Nutanix management endpoint IP address</p>
+        <p class="form-control-static help-block">Nutanix Prism Central address</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">Username</label>
+        <label class="acc-label">Username</label>
       </div>
       <div class="col-md-4">
         {{input type="text"
@@ -40,13 +40,13 @@
           }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Nutanix management username</p>
+        <p class="help-block">Nutanix management username</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Password</label>
+        <label class="acc-label">Password</label>
       </div>
       <div class="col-sm-12 col-md-4">
         {{input type="password"
@@ -55,7 +55,7 @@
           }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Nutanix management password</p>
+        <p class="help-block">Nutanix management password</p>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
     }}
       <div class="row">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">Cluster</label>
+        <label class="acc-label">Cluster</label>
       </div>
       <div class="col-md-4">
         {{input type="text"
@@ -85,7 +85,7 @@
         }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the cluster.</p>
+        <p class="help-block">The name of the cluster.</p>
       </div>
     </div>
 
@@ -127,10 +127,22 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">VM image</label>
+        <div class="input-group">
+          {{input type="text"
+            class="form-control"
+            value=model.%%DRIVERNAME%%Config.vmImage
+          }}
+        </div>
+        <p class="help-block">The name of the VM disks to clone from, for the newly created VM</p>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Image</label>
+        <label class="acc-label">VM Image</label>
       </div>
       <div class="col-md-4">
         {{input type="text"
@@ -139,13 +151,13 @@
           }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the VM disks to clone from, for the newly created VM</p>
+        <p class="help-block">The name of the VM disks to clone from, for the newly created VM</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Template Disk Size (GiB)</label>
+        <label class="acc-label">Template Disk Size (GiB)</label>
       </div>
       <div class="col-sm-12 col-md-4">
         {{input type="text"
@@ -154,7 +166,7 @@
         }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">
+        <p class="help-block">
           Size to extand the template disk in GiB.
           Set this to zero if you don't want to extend the template disk.
         </p>
@@ -163,7 +175,7 @@
 
     <div class="row">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Network(s)</label>
+        <label class="acc-label">VM Network(s)</label>
       </div>
       <div class="col-md-4">
         {{input type="text"
@@ -172,7 +184,7 @@
           }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
+        <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
       </div>
     </div>
 
@@ -190,7 +202,7 @@
 
     <div class="row">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Categories</label>
+        <label class="acc-label">VM Categories</label>
       </div>
       <div class="col-md-4">
         {{input type="text"
@@ -199,13 +211,13 @@
         }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
+        <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Storage Container</label>
+        <label class="acc-label">Storage Container</label>
       </div>
       <div class="col-sm-12 col-md-4">
         {{input type="text"
@@ -214,7 +226,7 @@
         }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">
+        <p class="help-block">
           UUID of the storage container to be used for the additional disk.
           Leave empty if you don't want to provision an extra disk.
         </p>
@@ -223,7 +235,7 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Disk Size (GiB)</label>
+        <label class="acc-label">Disk Size (GiB)</label>
       </div>
       <div class="col-sm-12 col-md-4">
         {{input type="text"
@@ -232,7 +244,7 @@
         }}
       </div>
       <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">
+        <p class="help-block">
           Size of the additional disk to be provisioned in GiB.
           Set this to zero if you don't want to provision an extra disk.
         </p>
