@@ -76,7 +76,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmImage: "",
       vmImageSize: 0,
       vmNetwork: "default",
-      vmCategories: [],
+      vmCategories: ['disk.enableUUID=TRUE'],
       cluster: "",
       insecure: true,
       storageContainer: "",
