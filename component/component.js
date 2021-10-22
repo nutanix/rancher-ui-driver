@@ -1,6 +1,5 @@
 /*!!!!!!!!!!!Do not change anything between here (the DRIVERNAME placeholder will be automatically replaced at buildtime)!!!!!!!!!!!*/
 import NodeDriver from 'shared/mixins/node-driver';
-import layout from './template';
 import C from 'shared/utils/constants';
 
 // do not remove LAYOUT, it is replaced at build time with a base64 representation of the template of the hbs template
