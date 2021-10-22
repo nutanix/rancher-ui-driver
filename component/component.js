@@ -59,7 +59,7 @@ export default Ember.Component.extend(NodeDriver, {
     set(this,'layout', template);
 
     this._super(...arguments);
-    this.initKeyValueParams('config.vmCategories', 'initParamArray');
+    this.initKeyValueParams('config.vmCategories', null);
 
   },
   /*!!!!!!!!!!!DO NOT CHANGE END!!!!!!!!!!!*/
@@ -76,7 +76,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmImage: "",
       vmImageSize: 0,
       vmNetwork: "default",
-      vmCategories: ['disk.enableUUID=TRUE'],
+      vmCategories: ['toto=TRUE'],
       cluster: "",
       insecure: true,
       storageContainer: "",
@@ -121,6 +121,7 @@ export default Ember.Component.extend(NodeDriver, {
   },
 
   initKeyValueParams(pairsKey, paramsKey) {
+    console.log(this)
     console.log(pairsKey,paramsKey)
     set(this, paramsKey, (get(this, pairsKey) || []).reduce(stringsToParams, []));
   },
