@@ -52,7 +52,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmImage: "",
       vmImageSize: 0,
       vmNetwork: "default",
-      vmCategories: "",
+      vmCategories: ['Zone=lab'],
       cluster: "",
       insecure: true,
       storageContainer: "",
@@ -91,7 +91,7 @@ export default Ember.Component.extend(NodeDriver, {
   },
 
   actions: {
-    categoryChanged(array) {
+    paramChanged(array) {
       this.updateKeyValueParams('config.vmCategories', array);
     }
   },
