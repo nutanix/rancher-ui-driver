@@ -1,5 +1,4 @@
 /*!!!!!!!!!!!Do not change anything between here (the DRIVERNAME placeholder will be automatically replaced at buildtime)!!!!!!!!!!!*/
-import Component from '@ember/component';
 import NodeDriver from 'shared/mixins/node-driver';
 import layout from './template';
 import C from 'shared/utils/constants';
