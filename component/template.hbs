@@ -29,18 +29,24 @@
     <div class="row">
       <div class="col span-6">
         <label class="acc-label">Username</label>
-        {{input type="text"
+        <div class="input-group">
+          {{input 
+            type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.username
-        }}
+          }}
+        </div>
         <p class="help-block">Nutanix management username</p>
       </div>
       <div class="col span-6">
         <label class="acc-label">Password</label>
-        {{input type="password"
+        <div class="input-group">
+          {{input
+            type="password"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.password
-        }}
+          }}
+        </div>
         <p class="help-block">Nutanix management password</p>
       </div>
     </div>
