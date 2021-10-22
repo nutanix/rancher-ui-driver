@@ -33,7 +33,7 @@ const stringsToParams = (params, str) => {
 
 const paramsToStrings = (strs, param) => {
   if (param.value && param.key) {
-    strs.push(`${ param.key }:${ param.value }`);
+    strs.push(`${ param.key }=${ param.value }`);
   }
 
   return strs;
