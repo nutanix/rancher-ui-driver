@@ -163,69 +163,45 @@
     </div>
 
     <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="acc-label">VM Network(s)</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.vmNetwork
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
-      </div>
+      <label class="acc-label">VM Network(s)</label>
+      {{input type="text"
+          class="form-control"
+          value=model.%%DRIVERNAME%%Config.vmNetwork
+      }}
+      <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
     </div>
 
     <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="acc-label">VM Categories</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.vmCategories
-        }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
-      </div>
+      <label class="acc-label">VM Categories</label>
+      {{input type="text"
+      class="form-control"
+      value=model.%%DRIVERNAME%%Config.vmCategories
+      }}
+      <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
     </div>
 
     <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="acc-label">Storage Container</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.storageContainer
-        }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="help-block">
-          UUID of the storage container to be used for the additional disk.
-          Leave empty if you don't want to provision an extra disk.
-        </p>
-      </div>
+      <label class="acc-label">Storage Container</label>
+      {{input type="text"
+      class="form-control"
+      value=model.%%DRIVERNAME%%Config.storageContainer
+      }}
+      <p class="help-block">
+        UUID of the storage container to be used for the additional disk.
+        Leave empty if you don't want to provision an extra disk.
+      </p>
     </div>
 
     <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="acc-label">Additional Disk Size (GiB)</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.diskSize
-        }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="help-block">
-          Size of the additional disk to be provisioned in GiB.
-          Set this to zero if you don't want to provision an extra disk.
-        </p>
-      </div>
+      <label class="acc-label">Additional Disk Size (GiB)</label>
+      {{input type="text"
+      class="form-control"
+      value=model.%%DRIVERNAME%%Config.diskSize
+      }}
+      <p class="help-block">
+        Size of the additional disk to be provisioned in GiB.
+        Set this to zero if you don't want to provision an extra disk.
+      </p>
     </div>
     {{/accordion-list-item}}
   {{/accordion-list}}
