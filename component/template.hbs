@@ -15,46 +15,32 @@
       }}
 
     <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
+      <div class="col span-12">
         <label class="acc-label">Management Endpoint</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
         {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.endpoint
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
+        }}
         <p class="form-control-static help-block">Nutanix Prism Central address</p>
       </div>
+      
     </div>
 
     <div class="row">
-      <div class="col-md-2 form-label">
+      <div class="col span-6">
         <label class="acc-label">Username</label>
-      </div>
-      <div class="col-md-4">
         {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.username
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
+        }}
         <p class="help-block">Nutanix management username</p>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
+      <div class="col span-6">
         <label class="acc-label">Password</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
         {{input type="password"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.password
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
+        }}
         <p class="help-block">Nutanix management password</p>
       </div>
     </div>
