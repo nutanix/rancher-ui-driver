@@ -1,0 +1,38 @@
+{
+  "name": "ui-driver-nutanix",
+  "version": "0.0.3",
+  "description": "Nutanix Rancher UI driver for custom docker-machine drivers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuxtof/ui-driver-nutanix.git"
+  },
+  "author": "Rancher Labs, Inc.",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rancher/rancher/issues"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/gulp server",
+    "clean": "./node_modules/.bin/gulp clean",
+    "build": "./node_modules/.bin/gulp build"
+  },
+  "homepage": "https://github.com/tuxtof/ui-driver-nutanix#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "@babel/preset-env": "^7.2.3",
+    "del": "3.0.0",
+    "gulp": "4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "0.4.0",
+    "gulp-concat": "2.6.1",
+    "gulp-connect": "5.7.0",
+    "gulp-jshint": "2.1.0",
+    "gulp-replace": "1.0.0",
+    "gulp-sourcemaps": "2.6.4",
+    "jshint": "2.9.7",
+    "replace-string": "^2.0.0",
+    "yargs": "12.0.5"
+  }
+}
