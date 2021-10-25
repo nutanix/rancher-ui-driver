@@ -17,6 +17,7 @@ const service      = Ember.inject.service;
 
 const defaultRadix = 10;
 const defaultBase  = 1024;
+
 /*!!!!!!!!!!!GLOBAL CONST END!!!!!!!!!!!*/
 
 
@@ -26,6 +27,8 @@ export default Ember.Component.extend(NodeDriver, {
   driverName: '%%DRIVERNAME%%',
   config:     alias('model.%%DRIVERNAME%%Config'),
   app:        service(),
+
+  initParamArray:       null,
 
   init() {
     // This does on the fly template compiling, if you mess with this :cry:
@@ -50,12 +53,14 @@ export default Ember.Component.extend(NodeDriver, {
       vmCores: 1,
       vmMem: 4096,
       vmImage: "",
+      vmImageSize: 0,
       vmNetwork: "default",
-      vmGroup: "",
+      vmCategories: "",
       cluster: "",
       insecure: true,
       storageContainer: "",
-      diskSize: 0
+      diskSize: 0,
+      cloudInit: "#cloud-config\n\n"
     });
 
     set(this, 'model.%%DRIVERNAME%%Config', config);

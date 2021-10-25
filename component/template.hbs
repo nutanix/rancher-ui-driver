@@ -1,68 +1,49 @@
 <section class="horizontal-form">
   <div class="container-fluid">
-    {{!-- This partial contains the quantity, name, and description fields --}}
 
-    <div class="over-hr r-mt20 r-mb20">
-      <span>Nutanix options</span>
-    </div>
+    {{!-- This line shows the driver title which you don't have to change it --}}
+    <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
+    <div class="over-hr"><span>{{driverContentTitle}}</span></div>
+
+
+   {{#accordion-list showExpandAll=false as | al expandFn | }}
+      {{#accordion-list-item 
+        title="1. Account Access"
+        detail="Configure to connect to the Nutanix Prism Central Instance"
+        expandOnInit=true
+        expand=(action expandFn)
+      }}
 
     <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Management Endpoint</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
+      <div class="col span-12">
+        <label class="acc-label">Management Endpoint</label>
         {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.endpoint
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Nutanix management endpoint IP address</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">Username</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.username
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Nutanix management username</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Password</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        {{input type="password"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.password
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Nutanix management password</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">Cluster</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.cluster
         }}
+        <p class="help-block">Nutanix Prism Central address</p>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the cluster.</p>
+      
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">Username</label>
+        {{input 
+          type="text"
+          class="form-control"
+          value=model.%%DRIVERNAME%%Config.username
+        }}
+        <p class="help-block">Nutanix management username</p>
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">Password</label>
+        {{input
+          type="password"
+          class="form-control"
+          value=model.%%DRIVERNAME%%Config.password
+        }}
+        <p class="help-block">Nutanix management password</p>
       </div>
     </div>
 
@@ -74,150 +55,168 @@
       </div>
     </div>
 
-    <div class="row">
+    {{/accordion-list-item}}
+    {{#accordion-list-item 
+        title="2. Scheduling"
+        detail="Choose what cluster the virtual machine will be scheduled to"
+        expandOnInit=true
+        expand=(action expandFn)
+    }}
+      <div class="row">
       <div class="col-md-2 form-label">
-        <label class="form-control-static">vCPU</label>
+        <label class="acc-label">Cluster</label>
       </div>
       <div class="col-md-4">
         {{input type="text"
-            class="form-control"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.cluster
+        }}
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <p class="help-block">The name of the cluster where deploy virtual machine.</p>
+      </div>
+    </div>
+
+
+
+    {{/accordion-list-item}}
+    {{#accordion-list-item 
+        title="3. Instance"
+        detail="Choose the size and OS of the virtual machine"
+        expandOnInit=true
+        expand=(action expandFn)
+    }}
+
+    <div class="row">
+      <div class="col span-6">
+         <label class="acc-label">CPUs</label>
+         <div class="input-group">
+           {{input-integer
+            min=1
+            max=32
             value=model.%%DRIVERNAME%%Config.vmCpus
+            classNames="form-control"
           }}
+          <div class="input-group-addon bg-default">
+            {{t "nodeDriver.vmwarevsphere.cpuCount.unit" cores=config.vmCpus}}
+          </div>
+         </div>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Number of VCPUs of the VM to be created</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">vCORE</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.vmCores
-          }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Number of cores per VCPU of the VM to be created</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Memory</label>
-      </div>
-      <div class="col-md-4">
+      <div class="col span-6">
+        <label class="acc-label">Memory</label>
         <div class="input-group">
-          {{input type="text"
-            class="form-control"
+          {{input-integer
+            min=1
             value=model.%%DRIVERNAME%%Config.vmMem
+            classNames="form-control"
           }}
-          <span class="input-group-addon">MB</span>
+          <div class="input-group-addon bg-default">MB</div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">Memory of the VM to be created (MB)</p>
-      </div>
     </div>
 
     <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Image</label>
-      </div>
-      <div class="col-md-4">
-        {{input type="text"
+      <div class="col span-6">
+        <label class="acc-label">Template Image</label>
+          {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.vmImage
           }}
+        <p class="help-block">The name of the Image to use as template for the newly created VM</p>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the VM disks to clone from, for the newly created VM</p>
+      <div class="col span-6">
+        <label class="acc-label">VM Disk Size</label>
+        <div class="input-group">
+          {{input-integer
+            min=0
+            value=model.%%DRIVERNAME%%Config.vmImageSize
+            classNames="form-control"
+          }}
+          <div class="input-group-addon bg-default">GiB</div>
+        </div>
+        <p class="help-block">Size to extand the template disk. Set this to zero if you don't want to extend the template disk.</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Network(s)</label>
+      <div class="col span-6">
+        <label class="acc-label">Additional Disk Size</label>
+        <div class="input-group">
+          {{input-integer
+            min=0
+            value=model.%%DRIVERNAME%%Config.diskSize
+            classNames="form-control"
+          }}
+          <div class="input-group-addon bg-default">GiB</div>
+        </div>
+        <p class="help-block">Size of the additional disk to be provisioned. Leave to zero if you don't want to provision an extra disk.</p>
       </div>
-      <div class="col-md-4">
+      <div class="col span-6">
+        <label class="acc-label">Storage Container</label>
+          {{input type="text"
+            class="form-control"
+            value=model.%%DRIVERNAME%%Config.storageContainer
+          }}
+        <p class="help-block">UUID of the storage container to be used for the additional disk. Leave empty if you don't want to provision an extra disk.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="acc-label">Cloud Config YAML</label>
+        {{input-yaml
+        showDownload=false
+        showUpload=false
+        canChangeName=false
+        gutters=(array)
+        minHeight=500
+        value=model.%%DRIVERNAME%%Config.cloudInit
+      }}
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">VM Network(s)</label>
         {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.vmNetwork
-          }}
+        }}
+        <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-md-2 form-label">
-        <label class="form-control-static">VM Categories</label>
-      </div>
-      <div class="col-md-4">
+      <div class="col span-6">
+        <label class="acc-label">VM Categories</label>
         {{input type="text"
         class="form-control"
-        value=model.%%DRIVERNAME%%Config.vmGroup
+        value=model.%%DRIVERNAME%%Config.vmCategories
         }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">The name of the group to attach to the newly created VM. Separate multiple groups by ",".</p>
+        <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
       </div>
     </div>
 
-
-    <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Storage Container</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.storageContainer
-        }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">
-          UUID of the storage container to be used for the additional disk.
-          Leave empty if you don't want to provision an extra disk.
-        </p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 col-md-2 form-label">
-        <label class="form-control-static">Disk Size (GiB)</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.diskSize
-        }}
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p class="form-control-static help-block">
-          Size of the additional disk to be provisioned in GiB.
-          Set this to zero if you don't want to provision an extra disk.
-        </p>
-      </div>
-    </div>
+    {{/accordion-list-item}}
+  {{/accordion-list}}
 
     {{!-- This following contains the Name, Labels and Engine Options fields --}}
-    <div class="over-hr"><span>{{templateOptionsTitle}}</span></div>
+    <div class="over-hr">
+      <span>
+        {{templateOptionsTitle}}
+      </span>
+    </div>
 
     {{form-name-description
       model=model
       nameRequired=true
+      rowClass="row mb-10"
     }}
 
     {{form-user-labels
       initialLabels=labelResource.labels
       setLabels=(action 'setLabels')
-      expandAll=expandAll
       expand=(action expandFn)
+    }}
+
+    {{form-node-taints
+    model=model
+    expand=(action expandFn)
     }}
 
     {{form-engine-opts
