@@ -175,20 +175,32 @@
 
     <div class="row">
       <div class="col span-6">
-        <label class="acc-label">VM Network(s)</label>
-        {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.vmNetwork
-        }}
-        <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
+      <label class="acc-label">VM Network(s)</label>
+      {{input type="text"
+          class="form-control"
+          value=model.%%DRIVERNAME%%Config.vmNetwork
+      }}
+      <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
       </div>
-      <div class="col span-6">
-        <label class="acc-label">VM Categories</label>
-        {{input type="text"
-        class="form-control"
-        value=model.%%DRIVERNAME%%Config.vmCategories
+    </div>
+
+    {{!-- <div class="row">
+      <label class="acc-label">VM Categories</label>
+      {{input type="text"
+      class="form-control"
+      value=model.%%DRIVERNAME%%Config.vmCategories
+      }}
+      <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
+    </div> --}}
+
+    <div class="row">
+      <div class="col span-12">
+        {{form-key-value
+          allowEmptyValue=true
+          initialArray=initParamArray
+          changedArray=(action "paramChanged")
+          header= "VM Categories"
         }}
-        <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
       </div>
     </div>
 
