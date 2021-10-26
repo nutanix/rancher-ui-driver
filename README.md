@@ -28,9 +28,8 @@ For other users to see your driver, you need to build it and host the output on 
 
 ## Using
 
-* Add a Machine Driver in Rancher 2.0 (Global -> Node Drivers)
-  * Name: Your `DRIVERNAME` (see above).
-  * Download URL: The URL for the driver binary (e.g. `https://github.com/mycompany/docker-machine-mycompany/releases/download/v1.0.0/docker-machine-driver-mycompany-v1.0.0-linux-amd64.tar.gz`)
-  * Custom UI URL: The URL you uploaded the `dist` folder to, e.g. `https://github.com/mycompany/ui-driver-mycompany/releases/download/v1.0.0/component.js`)
+* Add a Node Driver in Rancher 2.6 (Cluster Management -> Drivers -> Node Drivers)
+  * Download URL: The URL for the driver binary (`https://github.com/nutanix/docker-machine/releases/download/v3.0.0-beta6/docker-machine-driver-nutanix_v3.0.0-beta6_linux`)
+  * Custom UI URL: The URL for the UI driver (`https://nutanix.github.io/rancher-ui-driver/component.js`)
 * Wait for the driver to become "Active"
-* Go to Clusters -> Add Cluster, your driver and custom UI should show up.
+* Go to Cluster Management -> RKE1 Configuration -> Node Temaplates, your can add a Nutanix Template and custom UI should show up.
