@@ -18,6 +18,26 @@ const service      = Ember.inject.service;
 const defaultRadix = 10;
 const defaultBase  = 1024;
 
+const stringsToParams = (params, str) => {
+  const index = str.indexOf('=');
+
+  if ( index > -1 ) {
+    params.push({
+      key:   str.slice(0, index),
+      value: str.slice(index + 1),
+    });
+  }
+
+  return params;
+};
+
+const paramsToStrings = (strs, param) => {
+  if (param.value && param.key) {
+    strs.push(`${ param.key }=${ param.value }`);
+  }
+
+  return strs;
+};
 /*!!!!!!!!!!!GLOBAL CONST END!!!!!!!!!!!*/
 
 
@@ -28,7 +48,8 @@ export default Ember.Component.extend(NodeDriver, {
   config:     alias('model.%%DRIVERNAME%%Config'),
   app:        service(),
 
-  initParamArray:       null,
+  initCategory:         null,
+  initNetwork:          null,
 
   init() {
     // This does on the fly template compiling, if you mess with this :cry:
@@ -39,6 +60,8 @@ export default Ember.Component.extend(NodeDriver, {
     set(this,'layout', template);
 
     this._super(...arguments);
+    this.initCategoryParams('config.vmCategories', 'initCategory');
+    this.initNetworkParams('config.vmNetwork', 'initNetwork');
 
   },
   /*!!!!!!!!!!!DO NOT CHANGE END!!!!!!!!!!!*/
@@ -52,10 +75,11 @@ export default Ember.Component.extend(NodeDriver, {
       vmCpus: 2,
       vmCores: 1,
       vmMem: 4096,
+      vmCpuPassthrough: false,
       vmImage: "",
       vmImageSize: 0,
-      vmNetwork: "default",
-      vmCategories: "",
+      vmNetwork: [],
+      vmCategories: [],
       cluster: "",
       insecure: true,
       storageContainer: "",
@@ -91,6 +115,32 @@ export default Ember.Component.extend(NodeDriver, {
       set(this, 'errors', null);
       return true;
     }
+  },
+
+  actions: {
+    categoryChanged(array) {
+      this.updateCategoryParams('config.vmCategories', array);
+    },
+    
+    networkChanged(array) {
+      this.updateNetwork('config.vmNetwork', array);
+    }
+  },
+
+  initCategoryParams(pairsKey, paramsKey) {
+    set(this, paramsKey, (get(this, pairsKey) || []).reduce(stringsToParams, []));
+  },
+
+  updateCategoryParams(pairsKey, params) {
+    set(this, pairsKey, params.reduce(paramsToStrings, []));
+  },
+
+  initNetworkParams(pairsKey, paramsKey) {
+    set(this, paramsKey, (get(this, pairsKey) || []));
+  },
+
+  updateNetwork(pairsKey, networks) {
+    set(this, pairsKey, networks);
   },
 
   // Any computed properties or custom logic can go here
