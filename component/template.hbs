@@ -96,11 +96,14 @@
             max=32
             value=model.%%DRIVERNAME%%Config.vmCpus
             classNames="form-control"
-          }}
-          <div class="input-group-addon bg-default">
-            {{t "nodeDriver.vmwarevsphere.cpuCount.unit" cores=config.vmCpus}}
-          </div>
+           }}
+           <div class="input-group-addon bg-default">
+             {{t "nodeDriver.harvester.cpuCount.unit" cores=config.vmCpus}}
+           </div>
          </div>
+         <label class="acc-label">{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.vmCpuPassthrough}}
+           Passthrough the host's CPU features to the VM
+        </label>
       </div>
       <div class="col span-6">
         <label class="acc-label">Memory</label>
@@ -122,7 +125,7 @@
             class="form-control"
             value=model.%%DRIVERNAME%%Config.vmImage
           }}
-        <p class="help-block">The name of the Image to use as template for the newly created VM</p>
+        <p class="help-block">The name of the Image to use as template for the VM</p>
       </div>
       <div class="col span-6">
         <label class="acc-label">VM Disk Size</label>
@@ -174,31 +177,29 @@
     </div>
 
     <div class="row">
-      <div class="col span-6">
-      <label class="acc-label">VM Network(s)</label>
-      {{input type="text"
-          class="form-control"
-          value=model.%%DRIVERNAME%%Config.vmNetwork
-      }}
-      <p class="help-block">The name of the network to attach to the newly created VM. Separate multiple networks by ",".</p>
+      <div class="col span-12">
+        {{form-value-array
+          required=true
+          initialValues=initNetwork
+          valueLabel="clusterNew.googlegke.network.label"
+          addActionLabel="generic.add"
+          valuePlaceholder="generic.name"
+          changed=(action "networkChanged")
+        }}
       </div>
     </div>
-
-    {{!-- <div class="row">
-      <label class="acc-label">VM Categories</label>
-      {{input type="text"
-      class="form-control"
-      value=model.%%DRIVERNAME%%Config.vmCategories
-      }}
-      <p class="help-block">The categories to attach to the newly created VM (name:value). Separate multiple groups by ",".</p>
-    </div> --}}
 
     <div class="row">
       <div class="col span-12">
         {{form-key-value
-          allowEmptyValue=true
-          initialArray=initParamArray
-          changedArray=(action "paramChanged")
+          allowMultilineValue=false
+          allowEmptyValue=false
+          addActionLabel="generic.add"
+          keyLabel="generic.name"
+          keyPlaceholder="generic.name"
+          valuePlaceholder="value"
+          initialArray=initCategory
+          changedArray=(action "categoryChanged")
           header= "VM Categories"
         }}
       </div>

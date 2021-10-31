@@ -48,7 +48,8 @@ export default Ember.Component.extend(NodeDriver, {
   config:     alias('model.%%DRIVERNAME%%Config'),
   app:        service(),
 
-  initParamArray:       null,
+  initCategory:         null,
+  initNetwork:          null,
 
   init() {
     // This does on the fly template compiling, if you mess with this :cry:
@@ -59,7 +60,8 @@ export default Ember.Component.extend(NodeDriver, {
     set(this,'layout', template);
 
     this._super(...arguments);
-    this.initKeyValueParams('config.vmCategories', 'initParamArray');
+    this.initCategoryParams('config.vmCategories', 'initCategory');
+    this.initNetworkParams('config.vmNetwork', 'initNetwork');
 
   },
   /*!!!!!!!!!!!DO NOT CHANGE END!!!!!!!!!!!*/
@@ -73,10 +75,11 @@ export default Ember.Component.extend(NodeDriver, {
       vmCpus: 2,
       vmCores: 1,
       vmMem: 4096,
+      vmCpuPassthrough: false,
       vmImage: "",
       vmImageSize: 0,
-      vmNetwork: "default",
-      vmCategories: ['toto=TRUE'],
+      vmNetwork: [],
+      vmCategories: [],
       cluster: "",
       insecure: true,
       storageContainer: "",
@@ -115,26 +118,30 @@ export default Ember.Component.extend(NodeDriver, {
   },
 
   actions: {
-    paramChanged(array) {
-      console.log(array)
-      this.updateKeyValueParams('config.vmCategories', array);
+    categoryChanged(array) {
+      this.updateCategoryParams('config.vmCategories', array);
+    },
+    
+    networkChanged(array) {
+      this.updateNetwork('config.vmNetwork', array);
     }
   },
 
-  initKeyValueParams(pairsKey, paramsKey) {
-    console.log(this);
-    console.log(pairsKey);
-    console.log(paramsKey);
-    console.log(get(this, pairsKey));
+  initCategoryParams(pairsKey, paramsKey) {
     set(this, paramsKey, (get(this, pairsKey) || []).reduce(stringsToParams, []));
   },
 
-  updateKeyValueParams(pairsKey, params) {
-    console.log(params.reduce(paramsToStrings, []));
+  updateCategoryParams(pairsKey, params) {
     set(this, pairsKey, params.reduce(paramsToStrings, []));
-    console.log(this);
   },
 
+  initNetworkParams(pairsKey, paramsKey) {
+    set(this, paramsKey, (get(this, pairsKey) || []));
+  },
+
+  updateNetwork(pairsKey, networks) {
+    set(this, pairsKey, networks);
+  },
 
   // Any computed properties or custom logic can go here
 });
