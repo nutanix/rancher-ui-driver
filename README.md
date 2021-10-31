@@ -1,4 +1,4 @@
-# Rancher UI Driver
+# Nutanix Rancher UI Driver
 Rancher UI driver for [Nutanix Rancher Node Driver](https://github.com/nutanix/docker-machine)
 
 
