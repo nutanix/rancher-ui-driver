@@ -1,6 +1,6 @@
 {
   "name": "ui-driver-nutanix",
-  "version": "0.0.3",
+  "version": "3.0.0",
   "description": "Nutanix Rancher UI driver for custom docker-machine drivers",
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
     "@babel/preset-env": "^7.2.3",
     "del": "3.0.0",
-    "gulp": "4.0.0",
+    "gulp": "4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "0.4.0",
     "gulp-concat": "2.6.1",
@@ -31,8 +31,8 @@
     "gulp-jshint": "2.1.0",
     "gulp-replace": "1.0.0",
     "gulp-sourcemaps": "2.6.4",
-    "jshint": "2.9.7",
+    "jshint": "2.13.1",
     "replace-string": "^2.0.0",
-    "yargs": "12.0.5"
+    "yargs": "^17.2.1"
   }
 }
