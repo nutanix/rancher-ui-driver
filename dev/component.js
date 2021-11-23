@@ -56,7 +56,7 @@ define("nodes/components/driver-nutanix/component", ["exports", "shared/mixins/n
       this.initNetworkParams('config.vmNetwork', 'initNetwork');
     },
 
-    bootstrap: function bootstrap() {
+    bootstrap: function () {
       let config = get(this, 'globalStore').createRecord({
         type: 'nutanixConfig',
         username: "admin",
