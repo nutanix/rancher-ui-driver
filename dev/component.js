@@ -90,6 +90,10 @@ define("nodes/components/driver-nutanix/component", ["exports", "shared/mixins/n
         errors.push('Memory Size must be at least 1024 MB');
       }
 
+      if (get(this, 'config.storageContainer') && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(get(this, 'config.storageContainer'))) {
+        errors.push('Storage Container must be a valid UUID');
+      }
+
       if (get(errors, 'length')) {
         set(this, 'errors', errors);
         return false;
