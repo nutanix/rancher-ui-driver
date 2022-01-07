@@ -107,7 +107,7 @@ export default Ember.Component.extend(NodeDriver, {
     }
 
     // Check storageContainer is a UUID
-    if ( get(this, 'config.storageContainer') && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(get(this, 'config.storageContainer')) ) {
+    if ( get(this, 'config.storageContainer') && !/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i.test(get(this, 'config.storageContainer')) ) {
       errors.push('Storage Container must be a valid UUID');
     }
 
