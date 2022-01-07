@@ -106,6 +106,11 @@ export default Ember.Component.extend(NodeDriver, {
       errors.push('Memory Size must be at least 1024 MB');
     }
 
+    // Check storageContainer is a UUID
+    if ( get(this, 'config.storageContainer') && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(get(this, 'config.storageContainer')) ) {
+      errors.push('Storage Container must be a valid UUID');
+    }
+
     // Set the array of errors for display,
     // and return true if saving should continue.
     if ( get(errors, 'length') ) {
