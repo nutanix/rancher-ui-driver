@@ -16,7 +16,9 @@
 
     <div class="row">
       <div class="col span-12">
-        <label class="acc-label">Management Endpoint</label>
+        <label class="acc-label">Management Endpoint
+          <span class="field-required ember-view">*</span>
+        </label>
         {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.endpoint
@@ -28,7 +30,9 @@
 
     <div class="row">
       <div class="col span-6">
-        <label class="acc-label">Username</label>
+        <label class="acc-label">Username
+          <span class="field-required ember-view">*</span>
+        </label>
         {{input 
           type="text"
           class="form-control"
@@ -37,7 +41,9 @@
         <p class="help-block">Nutanix management username</p>
       </div>
       <div class="col span-6">
-        <label class="acc-label">Password</label>
+        <label class="acc-label">Password
+          <span class="field-required ember-view">*</span>
+        </label>
         {{input
           type="password"
           class="form-control"
@@ -64,7 +70,9 @@
     }}
       <div class="row">
       <div class="col-md-2 form-label">
-        <label class="acc-label">Cluster</label>
+        <label class="acc-label">Cluster
+          <span class="field-required ember-view">*</span>
+        </label>
       </div>
       <div class="col-md-4">
         {{input type="text"
@@ -120,7 +128,9 @@
 
     <div class="row">
       <div class="col span-6">
-        <label class="acc-label">Template Image</label>
+        <label class="acc-label">Template Image
+          <span class="field-required ember-view">*</span>
+        </label>
           {{input type="text"
             class="form-control"
             value=model.%%DRIVERNAME%%Config.vmImage
@@ -137,7 +147,7 @@
           }}
           <div class="input-group-addon bg-default">GiB</div>
         </div>
-        <p class="help-block">Size to extand the template disk. Set this to zero if you don't want to extend the template disk.</p>
+        <p class="help-block">Size to extend the template disk. Set this to zero if you don't want to extend it.<br>Recommended if your image is smaller than 40GB</p>
       </div>
     </div>
 

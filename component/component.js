@@ -101,14 +101,42 @@ export default Ember.Component.extend(NodeDriver, {
 
     // Add more specific errors
 
+    // Check Account info
+    if ( !get(this, 'config.endpoint') ) {
+      errors.push('Management Endpoint is required');
+    }
+    if ( !get(this, 'config.username') ) {
+      errors.push('Username is required');
+    }
+    if ( !get(this, 'config.password') ) {
+      errors.push('Password is required');
+    }
+    if ( !get(this, 'config.cluster') ) {
+      errors.push('Cluster is required');
+    }
+
     // Check something and add an error entry if it fails:
     if ( parseInt(get(this, 'config.vmMem'), defaultRadix) < defaultBase ) {
       errors.push('Memory Size must be at least 1024 MB');
     }
 
+    // Check template image
+    if ( !get(this, 'config.vmImage') ) {
+      errors.push('Template image is required');
+    }
+
+    // Check network interface
+    if ( get(this, 'config.vmNetwork').length === 0 ) {
+      errors.push('Network interface is required');
+    }
+
     // Check storageContainer is a UUID
     if ( get(this, 'config.storageContainer') && !/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i.test(get(this, 'config.storageContainer')) ) {
       errors.push('Storage Container must be a valid UUID');
+    }
+
+    if ( parseInt(get(this, 'config.diskSize')) > 0 && get(this, 'config.storageContainer') === '' ) {
+      errors.push('Storage Container is required if disk size is set');
     }
 
     // Set the array of errors for display,
