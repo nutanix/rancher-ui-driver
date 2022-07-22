@@ -107,7 +107,11 @@ define("nodes/components/driver-nutanix/component", ["exports", "shared/mixins/n
       }
 
       if (!get(this, 'config.vmImage')) {
-        errors.push('Image is required');
+        errors.push('Template image is required');
+      }
+
+      if (!get(this, 'config.vmNetwork')) {
+        errors.push('Network interface is required');
       }
 
       if (get(this, 'config.storageContainer') && !/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i.test(get(this, 'config.storageContainer'))) {
