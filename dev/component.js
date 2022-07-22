@@ -86,8 +86,28 @@ define("nodes/components/driver-nutanix/component", ["exports", "shared/mixins/n
         errors.push('Name is required');
       }
 
+      if (!get(this, 'config.endpoint')) {
+        errors.push('Management Endpoint is required');
+      }
+
+      if (!get(this, 'config.username')) {
+        errors.push('Username is required');
+      }
+
+      if (!get(this, 'config.password')) {
+        errors.push('Password is required');
+      }
+
+      if (!get(this, 'config.cluster')) {
+        errors.push('Cluster is required');
+      }
+
       if (parseInt(get(this, 'config.vmMem'), defaultRadix) < defaultBase) {
         errors.push('Memory Size must be at least 1024 MB');
+      }
+
+      if (!get(this, 'config.vmImage')) {
+        errors.push('Image is required');
       }
 
       if (get(this, 'config.storageContainer') && !/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i.test(get(this, 'config.storageContainer'))) {
