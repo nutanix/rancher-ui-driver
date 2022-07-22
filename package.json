@@ -1,6 +1,6 @@
 {
   "name": "ui-driver-nutanix",
-  "version": "3.0.0",
+  "version": "3.2.1",
   "description": "Nutanix Rancher UI driver for custom docker-machine drivers",
   "repository": {
     "type": "git",
@@ -35,9 +35,5 @@
     "jshint": "2.13.1",
     "replace-string": "^2.0.0",
     "yargs": "^17.2.1"
-  },
-  "resolutions": {
-    "faye-websocket": "^0.11.4",
-    "glob-parent": "^6.0.2"
   }
 }
