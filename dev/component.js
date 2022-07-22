@@ -110,7 +110,7 @@ define("nodes/components/driver-nutanix/component", ["exports", "shared/mixins/n
         errors.push('Template image is required');
       }
 
-      if (!get(this, 'config.vmNetwork')) {
+      if (get(this, 'config.vmNetwork').length === 0) {
         errors.push('Network interface is required');
       }
 
