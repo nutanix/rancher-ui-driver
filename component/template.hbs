@@ -6,13 +6,13 @@
     <div class="over-hr"><span>{{driverContentTitle}}</span></div>
 
 
-   {{#accordion-list showExpandAll=false as | al expandFn | }}
-      {{#accordion-list-item 
-        title="1. Account Access"
-        detail="Configure to connect to the Nutanix Prism Central Instance"
-        expandOnInit=true
-        expand=(action expandFn)
-      }}
+    {{#accordion-list showExpandAll=false as | al expandFn | }}
+    {{#accordion-list-item
+    title="1. Account Access"
+    detail="Configure to connect to the Nutanix Prism Central Instance"
+    expandOnInit=true
+    expand=(action expandFn)
+    }}
 
     <div class="row">
       <div class="col span-12">
@@ -20,12 +20,12 @@
           <span class="field-required ember-view">*</span>
         </label>
         {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.endpoint
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.endpoint
         }}
         <p class="help-block">Nutanix Prism Central address</p>
       </div>
-      
+
     </div>
 
     <div class="row">
@@ -33,10 +33,10 @@
         <label class="acc-label">Username
           <span class="field-required ember-view">*</span>
         </label>
-        {{input 
-          type="text"
-          class="form-control"
-          value=model.%%DRIVERNAME%%Config.username
+        {{input
+        type="text"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.username
         }}
         <p class="help-block">Nutanix management username</p>
       </div>
@@ -45,9 +45,9 @@
           <span class="field-required ember-view">*</span>
         </label>
         {{input
-          type="password"
-          class="form-control"
-          value=model.%%DRIVERNAME%%Config.password
+        type="password"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.password
         }}
         <p class="help-block">Nutanix management password</p>
       </div>
@@ -62,13 +62,13 @@
     </div>
 
     {{/accordion-list-item}}
-    {{#accordion-list-item 
-        title="2. Scheduling"
-        detail="Choose what cluster the virtual machine will be scheduled to"
-        expandOnInit=true
-        expand=(action expandFn)
+    {{#accordion-list-item
+    title="2. Scheduling"
+    detail="Choose what cluster the virtual machine will be scheduled to"
+    expandOnInit=true
+    expand=(action expandFn)
     }}
-      <div class="row">
+    <div class="row">
       <div class="col-md-2 form-label">
         <label class="acc-label">Cluster
           <span class="field-required ember-view">*</span>
@@ -88,38 +88,38 @@
 
 
     {{/accordion-list-item}}
-    {{#accordion-list-item 
-        title="3. Instance"
-        detail="Choose the size and OS of the virtual machine"
-        expandOnInit=true
-        expand=(action expandFn)
+    {{#accordion-list-item
+    title="3. Instance"
+    detail="Choose the size and OS of the virtual machine"
+    expandOnInit=true
+    expand=(action expandFn)
     }}
 
     <div class="row">
       <div class="col span-6">
-         <label class="acc-label">CPUs</label>
-         <div class="input-group">
-           {{input-integer
-            min=1
-            max=32
-            value=model.%%DRIVERNAME%%Config.vmCpus
-            classNames="form-control"
-           }}
-           <div class="input-group-addon bg-default">
-             {{t "nodeDriver.harvester.cpuCount.unit" cores=config.vmCpus}}
-           </div>
-         </div>
-         <label class="acc-label">{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.vmCpuPassthrough}}
-           Passthrough the host's CPU features to the VM
+        <label class="acc-label">CPUs</label>
+        <div class="input-group">
+          {{input-integer
+          min=1
+          max=32
+          value=model.%%DRIVERNAME%%Config.vmCpus
+          classNames="form-control"
+          }}
+          <div class="input-group-addon bg-default">
+            {{t "nodeDriver.harvester.cpuCount.unit" cores=config.vmCpus}}
+          </div>
+        </div>
+        <label class="acc-label">{{input type="checkbox" checked=model.%%DRIVERNAME%%Config.vmCpuPassthrough}}
+          Passthrough the host's CPU features to the VM
         </label>
       </div>
       <div class="col span-6">
         <label class="acc-label">Memory</label>
         <div class="input-group">
           {{input-integer
-            min=1
-            value=model.%%DRIVERNAME%%Config.vmMem
-            classNames="form-control"
+          min=1
+          value=model.%%DRIVERNAME%%Config.vmMem
+          classNames="form-control"
           }}
           <div class="input-group-addon bg-default">MB</div>
         </div>
@@ -131,23 +131,24 @@
         <label class="acc-label">Template Image
           <span class="field-required ember-view">*</span>
         </label>
-          {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.vmImage
-          }}
+        {{input type="text"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.vmImage
+        }}
         <p class="help-block">The name of the disk image to use as template for the VM</p>
       </div>
       <div class="col span-6">
         <label class="acc-label">VM Disk Size</label>
         <div class="input-group">
           {{input-integer
-            min=0
-            value=model.%%DRIVERNAME%%Config.vmImageSize
-            classNames="form-control"
+          min=0
+          value=model.%%DRIVERNAME%%Config.vmImageSize
+          classNames="form-control"
           }}
           <div class="input-group-addon bg-default">GiB</div>
         </div>
-        <p class="help-block">Size to extend the template disk. Set this to zero if you don't want to extend it.<br>Recommended if your image is smaller than 40GB</p>
+        <p class="help-block">Size to extend the template disk. Set this to zero if you don't want to extend
+          it.<br>Recommended if your image is smaller than 40GB</p>
       </div>
     </div>
 
@@ -156,45 +157,58 @@
         <label class="acc-label">Additional Disk Size</label>
         <div class="input-group">
           {{input-integer
-            min=0
-            value=model.%%DRIVERNAME%%Config.diskSize
-            classNames="form-control"
+          min=0
+          value=model.%%DRIVERNAME%%Config.diskSize
+          classNames="form-control"
           }}
           <div class="input-group-addon bg-default">GiB</div>
         </div>
-        <p class="help-block">Size of the additional disk to be provisioned. Leave to zero if you don't want to provision an extra disk.</p>
+        <p class="help-block">Size of the additional disk to be provisioned. Leave to zero if you don't want to
+          provision an extra disk.</p>
       </div>
       <div class="col span-6">
         <label class="acc-label">Storage Container</label>
-          {{input type="text"
-            class="form-control"
-            value=model.%%DRIVERNAME%%Config.storageContainer
-          }}
-        <p class="help-block">UUID of the storage container to be used for the additional disk. Leave empty if you don't want to provision an extra disk.</p>
+        {{input type="text"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.storageContainer
+        }}
+        <p class="help-block">UUID of the storage container to be used for the additional disk. Leave empty if you don't
+          want to provision an extra disk.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">Project Name</label>
+        {{input type="text"
+        class="form-control"
+        value=model.%%DRIVERNAME%%Config.project
+        }}
+        <p class="help-block">The name of the project where deploy the VM (default if empty)</p>
       </div>
     </div>
 
     <div class="row">
       <label class="acc-label">Cloud Config YAML</label>
-        {{input-yaml
-        showDownload=false
-        showUpload=false
-        canChangeName=false
-        gutters=(array)
-        minHeight=500
-        value=model.%%DRIVERNAME%%Config.cloudInit
+      {{input-yaml
+      showDownload=false
+      showUpload=false
+      canChangeName=false
+      gutters=(array)
+      minHeight=500
+      value=model.%%DRIVERNAME%%Config.cloudInit
       }}
     </div>
 
     <div class="row">
       <div class="col span-12">
         {{form-value-array
-          required=true
-          initialValues=initNetwork
-          valueLabel="clusterNew.googlegke.network.label"
-          addActionLabel="generic.add"
-          valuePlaceholder="generic.name"
-          changed=(action "networkChanged")
+        required=true
+        initialValues=initNetwork
+        valueLabel="clusterNew.googlegke.network.label"
+        addActionLabel="generic.add"
+        valuePlaceholder="generic.name"
+        changed=(action "networkChanged")
         }}
       </div>
     </div>
@@ -202,15 +216,15 @@
     <div class="row">
       <div class="col span-12">
         {{form-key-value
-          allowMultilineValue=false
-          allowEmptyValue=false
-          addActionLabel="generic.add"
-          keyLabel="generic.name"
-          keyPlaceholder="generic.name"
-          valuePlaceholder="value"
-          initialArray=initCategory
-          changedArray=(action "categoryChanged")
-          header= "VM Categories"
+        allowMultilineValue=false
+        allowEmptyValue=false
+        addActionLabel="generic.add"
+        keyLabel="generic.name"
+        keyPlaceholder="generic.name"
+        valuePlaceholder="value"
+        initialArray=initCategory
+        changedArray=(action "categoryChanged")
+        header= "VM Categories"
         }}
       </div>
     </div>
@@ -222,7 +236,7 @@
     </div>
 
     {{/accordion-list-item}}
-  {{/accordion-list}}
+    {{/accordion-list}}
 
     {{!-- This following contains the Name, Labels and Engine Options fields --}}
     <div class="over-hr">
@@ -232,15 +246,15 @@
     </div>
 
     {{form-name-description
-      model=model
-      nameRequired=true
-      rowClass="row mb-10"
+    model=model
+    nameRequired=true
+    rowClass="row mb-10"
     }}
 
     {{form-user-labels
-      initialLabels=labelResource.labels
-      setLabels=(action 'setLabels')
-      expand=(action expandFn)
+    initialLabels=labelResource.labels
+    setLabels=(action 'setLabels')
+    expand=(action expandFn)
     }}
 
     {{form-node-taints
@@ -249,8 +263,8 @@
     }}
 
     {{form-engine-opts
-      machine=model
-      showEngineUrl=showEngineUrl
+    machine=model
+    showEngineUrl=showEngineUrl
     }}
 
     {{!-- This component shows errors produced by validate() in the component --}}

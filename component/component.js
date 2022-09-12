@@ -9,21 +9,21 @@ const LAYOUT;
 
 /*!!!!!!!!!!!GLOBAL CONST START!!!!!!!!!!!*/
 // EMBER API Access - if you need access to any of the Ember API's add them here in the same manner rather then import them via modules, since the dependencies exist in rancher we dont want to expor the modules in the amd def
-const computed     = Ember.computed;
-const get          = Ember.get;
-const set          = Ember.set;
-const alias        = Ember.computed.alias;
-const service      = Ember.inject.service;
+const computed = Ember.computed;
+const get = Ember.get;
+const set = Ember.set;
+const alias = Ember.computed.alias;
+const service = Ember.inject.service;
 
 const defaultRadix = 10;
-const defaultBase  = 1024;
+const defaultBase = 1024;
 
 const stringsToParams = (params, str) => {
   const index = str.indexOf('=');
 
-  if ( index > -1 ) {
+  if (index > -1) {
     params.push({
-      key:   str.slice(0, index),
+      key: str.slice(0, index),
       value: str.slice(index + 1),
     });
   }
@@ -33,7 +33,7 @@ const stringsToParams = (params, str) => {
 
 const paramsToStrings = (strs, param) => {
   if (param.value && param.key) {
-    strs.push(`${ param.key }=${ param.value }`);
+    strs.push(`${param.key}=${param.value}`);
   }
 
   return strs;
@@ -45,19 +45,19 @@ const paramsToStrings = (strs, param) => {
 /*!!!!!!!!!!!DO NOT CHANGE START!!!!!!!!!!!*/
 export default Ember.Component.extend(NodeDriver, {
   driverName: '%%DRIVERNAME%%',
-  config:     alias('model.%%DRIVERNAME%%Config'),
-  app:        service(),
+  config: alias('model.%%DRIVERNAME%%Config'),
+  app: service(),
 
-  initCategory:         null,
-  initNetwork:          null,
+  initCategory: null,
+  initNetwork: null,
 
   init() {
     // This does on the fly template compiling, if you mess with this :cry:
     const decodedLayout = window.atob(LAYOUT);
-    const template      = Ember.HTMLBars.compile(decodedLayout, {
+    const template = Ember.HTMLBars.compile(decodedLayout, {
       moduleName: 'nodes/components/driver-%%DRIVERNAME%%/template'
     });
-    set(this,'layout', template);
+    set(this, 'layout', template);
 
     this._super(...arguments);
     this.initCategoryParams('config.vmCategories', 'initCategory');
@@ -67,11 +67,12 @@ export default Ember.Component.extend(NodeDriver, {
   /*!!!!!!!!!!!DO NOT CHANGE END!!!!!!!!!!!*/
 
   // Write your component here, starting with setting 'model' to a machine with your config populated
-  bootstrap: function() {
+  bootstrap: function () {
     // bootstrap is called by rancher ui on 'init', you're better off doing your setup here rather then the init function to ensure everything is setup correctly
     let config = get(this, 'globalStore').createRecord({
       type: '%%DRIVERNAME%%Config',
       username: "admin",
+      password: "",
       vmCpus: 2,
       vmCores: 1,
       vmMem: 4096,
@@ -80,6 +81,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmImageSize: 0,
       vmNetwork: [],
       vmCategories: [],
+      project: "",
       cluster: "",
       insecure: true,
       storageContainer: "",
@@ -94,54 +96,54 @@ export default Ember.Component.extend(NodeDriver, {
   validate() {
     // Get generic API validation errors
     this._super();
-    var errors = get(this, 'errors')||[];
-    if ( !get(this, 'model.name') ) {
+    var errors = get(this, 'errors') || [];
+    if (!get(this, 'model.name')) {
       errors.push('Name is required');
     }
 
     // Add more specific errors
 
     // Check Account info
-    if ( !get(this, 'config.endpoint') ) {
+    if (!get(this, 'config.endpoint')) {
       errors.push('Management Endpoint is required');
     }
-    if ( !get(this, 'config.username') ) {
+    if (!get(this, 'config.username')) {
       errors.push('Username is required');
     }
-    if ( !get(this, 'config.password') ) {
+    if (!get(this, 'config.password')) {
       errors.push('Password is required');
     }
-    if ( !get(this, 'config.cluster') ) {
+    if (!get(this, 'config.cluster')) {
       errors.push('Cluster is required');
     }
 
     // Check something and add an error entry if it fails:
-    if ( parseInt(get(this, 'config.vmMem'), defaultRadix) < defaultBase ) {
+    if (parseInt(get(this, 'config.vmMem'), defaultRadix) < defaultBase) {
       errors.push('Memory Size must be at least 1024 MB');
     }
 
     // Check template image
-    if ( !get(this, 'config.vmImage') ) {
+    if (!get(this, 'config.vmImage')) {
       errors.push('Template image is required');
     }
 
     // Check network interface
-    if ( get(this, 'config.vmNetwork').length === 0 ) {
+    if (get(this, 'config.vmNetwork').length === 0) {
       errors.push('Network interface is required');
     }
 
     // Check storageContainer is a UUID
-    if ( get(this, 'config.storageContainer') && !/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i.test(get(this, 'config.storageContainer')) ) {
+    if (get(this, 'config.storageContainer') && !/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/i.test(get(this, 'config.storageContainer'))) {
       errors.push('Storage Container must be a valid UUID');
     }
 
-    if ( parseInt(get(this, 'config.diskSize')) > 0 && get(this, 'config.storageContainer') === '' ) {
+    if (parseInt(get(this, 'config.diskSize')) > 0 && get(this, 'config.storageContainer') === '') {
       errors.push('Storage Container is required if disk size is set');
     }
 
     // Set the array of errors for display,
     // and return true if saving should continue.
-    if ( get(errors, 'length') ) {
+    if (get(errors, 'length')) {
       set(this, 'errors', errors);
       return false;
     } else {
@@ -154,7 +156,7 @@ export default Ember.Component.extend(NodeDriver, {
     categoryChanged(array) {
       this.updateCategoryParams('config.vmCategories', array);
     },
-    
+
     networkChanged(array) {
       this.updateNetwork('config.vmNetwork', array);
     }
