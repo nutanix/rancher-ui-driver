@@ -82,6 +82,7 @@ export default Ember.Component.extend(NodeDriver, {
       vmNetwork: [],
       vmCategories: [],
       project: "",
+      bootType: "legacy",
       cluster: "",
       insecure: true,
       storageContainer: "",

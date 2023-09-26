@@ -3,7 +3,6 @@
 
     {{!-- This line shows the driver title which you don't have to change it --}}
     <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
-    <div class="over-hr"><span>{{driverContentTitle}}</span></div>
 
 
     {{#accordion-list showExpandAll=false as | al expandFn | }}
@@ -128,8 +127,8 @@
 
     <div class="row">
       <div class="col span-6">
-        <label class="acc-label">Template Image
-          <span class="field-required ember-view">*</span>
+        <label class="acc-label">
+          Template Image{{field-required}}
         </label>
         {{input type="text"
         class="form-control"
@@ -185,6 +184,18 @@
         value=model.%%DRIVERNAME%%Config.project
         }}
         <p class="help-block">The name of the project where deploy the VM (default if empty)</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">Boot Configuration: </label>
+        <div class="radio">
+          {{radio-button selection=model.%%DRIVERNAME%%Config.bootType value="legacy"}}
+          Legacy
+          {{radio-button selection=model.%%DRIVERNAME%%Config.bootType value="uefi"}}
+          UEFI
+        </div>
       </div>
     </div>
 
