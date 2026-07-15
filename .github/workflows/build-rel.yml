@@ -6,7 +6,7 @@ name: build released UI Driver
 on:
   push:
     branches-ignore:
-      - "*"
+      - "**"
     tags:
       - "v*"
 
